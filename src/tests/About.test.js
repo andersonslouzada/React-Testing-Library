@@ -1,35 +1,33 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { About } from '../pages';
+import About from '../pages/About';
 import renderWithRouter from '../renderWithRouter';
 
-test('Testa o componente About.js', () => {
-  it('Testa se a página contém as informações sobre a Pokédex', () => {
-
-  });
-
+describe('Testa o componente About.js', () => {
   it('Testa se a página contém dois parágrafos com texto sobre a Pokédex', () => {
+    renderWithRouter(<About />);
+    const textOne = screen.getByText(
+      /this application simulates a pokédex, a digital encyclopedia containing all pokémon/i,
+    );
 
+    const textTwo = screen.getByText(
+      /one can filter pokémon by type, and see more details for each one of them/i,
+    );
+
+    expect(textOne).toBeInTheDocument();
+    expect(textTwo).toBeInTheDocument();
   });
 
   it('Testa se a página contém um heading h2 com o texto About Pokédex', () => {
-    const { history } = renderWithRouter(<About />);
-    const aboutLink = screen.getByRole('link', {
-      name: 'About',
-    });
-
-    userEvent.click(aboutLink);
-
-    const { pathname } = history.location;
+    renderWithRouter(<About />);
     const aboutTitle = screen.getByRole('heading', {
       name: 'About Pokédex',
     });
-    expect(pathname).toBe('/about');
     expect(aboutTitle).toBeInTheDocument();
   });
 
   it('Testa se a página contém a seguinte imagem de uma Pokédex:', () => {
+    renderWithRouter(<About />);
     const aboutImg = screen.getByRole('img', {
       name: 'Pokédex',
     });
