@@ -1,7 +1,7 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
-import About from '../pages/About';
 import renderWithRouter from '../renderWithRouter';
+import About from '../pages/About';
 
 describe('Testa o componente About.js', () => {
   it('Testa se a página contém dois parágrafos com texto sobre a Pokédex', () => {
